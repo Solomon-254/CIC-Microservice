@@ -1,0 +1,290 @@
+{
+	"info": {
+		"_postman_id": "6e97869e-2f44-41a5-8c9a-4f42e41121f0",
+		"name": "CIC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21724727",
+		"_collection_link": "https://speeding-desert-911188.postman.co/workspace/New-Team-Workspace~50829b18-b477-48c1-8a68-b93f166f1421/collection/21724727-6e97869e-2f44-41a5-8c9a-4f42e41121f0?action=share&source=collection_link&creator=21724727"
+	},
+	"item": [
+		{
+			"name": "GI",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/proxy/general-insurance/policies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"proxy",
+								"general-insurance",
+								"policies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "policy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/proxy/general-insurance/policies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"proxy",
+								"general-insurance",
+								"policies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"clientNumber\": \"CL987654\",\r\n  \"polcyNumber\": \"PN123456789\",\r\n  \"expiryDate\": \"2025-12-31\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/proxy/general-insurance/policies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"proxy",
+								"general-insurance",
+								"policies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/proxy/general-insurance/policies/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"proxy",
+								"general-insurance",
+								"policies",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"clientNumber\":\"CL9876599\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3003/proxy/general-insurance/policies/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"proxy",
+								"general-insurance",
+								"policies",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/proxy/general-insurance/policies/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"proxy",
+								"general-insurance",
+								"policies",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AM",
+			"item": [
+				{
+					"name": "Get GI Policy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/proxy/asset-management/assets/policy/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"proxy",
+								"asset-management",
+								"assets",
+								"policy",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get GI Policies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/proxy/asset-management/assets/policies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"proxy",
+								"asset-management",
+								"assets",
+								"policies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Direct Service Call",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3003/proxy/asset-management/assets/direct/policy/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"proxy",
+								"asset-management",
+								"assets",
+								"direct",
+								"policy",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Monitoring",
+			"item": [
+				{
+					"name": "Prometheus Monitoring",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/metrics",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"metrics"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "subarray",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/subarray/max-sum?arr=-2,1,-3,4,-1,-2,1,-5,4,2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"subarray",
+						"max-sum"
+					],
+					"query": [
+						{
+							"key": "arr",
+							"value": "-2,1,-3,4,-1,-2,1,-5,4,2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
