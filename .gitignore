@@ -1,0 +1,14 @@
+# Root-level .gitignore
+
+# Ignore all node_modules in subdirectories
+**/node_modules
+
+# Ignore environment files
+**/.env
+
+# Ignore build outputs
+**/dist
+
+# OS/system files
+.DS_Store
+Thumbs.db
