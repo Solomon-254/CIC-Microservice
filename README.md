@@ -1,116 +1,227 @@
-Sure! Here's an updated README tailored to the microservice NestJS project we've completed, including project setup, metrics endpoint with Prometheus, and health checks like actuators:
-
----
-
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
 
+<p align="center">A microservices-based backend system built using NestJS, focused on modularity, scalability, and maintainability.</p>
+
 <p align="center">
-  A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side microservices and applications.
+  <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
+  <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
+  <a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
+  <a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
 </p>
 
 ---
 
-## Description
+## 📦 Project Structure
 
-This project is a **NestJS microservice** application built with TypeScript. It includes:
+This repository contains a microservice-based architecture built with NestJS:
 
-* Modular architecture for separation of concerns
-* Prometheus metrics endpoint for monitoring
-* Health checks endpoints (similar to Spring Boot Actuator)
-* Integration with databases and external services
-* Designed for scalability and observability in production environments
+```
+
+project-root/
+├── api-gateway/                # Central API Gateway (entry point)
+├── asset-management-service/  # Handles assets (CRUD, assignments, etc.)
+├── general-insurance-service/ # Manages insurance products and logic
+├── service-registry/          # Basic service discovery or health registry
+├── shared/                    # Shared modules, DTOs, interfaces
+
+````
 
 ---
 
-## Project setup
+## 🚀 Features
+
+- 🧱 Modular microservices architecture
+- 🚪 Gateway-based routing and central access
+- 📡 TCP-based communication between services
+- 📊 Built-in Prometheus monitoring per service
+- 🔐 Environment-based configuration
+- 🧪 Full test support: unit, e2e
+- 🗃️ MySQL database integration (TypeORM)
+
+---
+
+## 🛠️ Tech Stack
+
+- [NestJS](https://nestjs.com/)
+- [TypeORM](https://typeorm.io/)
+- [MySQL](https://www.mysql.com/)
+- [Prometheus](https://prometheus.io/) (monitoring)
+- [RxJS](https://rxjs.dev/) for microservice messaging
+- REST + TCP transport layer
+
+---
+
+## 🧰 Prerequisites
+
+1. **Node.js** (v18 or higher recommended)
+2. **MySQL** running locally (default: `localhost:3306`)
+3. **Redis** *(optional, if needed later for queues)*
+4. **Prometheus** *(optional for monitoring)*
+
+---
+
+## ⚙️ Environment Variables
+
+Create a `.env` file in each microservice (and the gateway) based on `.env.example`.
+
+Example (`asset-management-service/.env`):
+
+```env
+PORT=3001
+DB_HOST=localhost
+DB_PORT=3306
+DB_USERNAME=root
+DB_PASSWORD=your_password
+DB_DATABASE=asset_db
+````
+
+---
+
+## 🧪 Running the Project
+
+### 1. Clone the repo
 
 ```bash
+git clone https://github.com/your-org/your-repo.git
+cd your-repo
+```
+
+---
+
+### 2. Start MySQL and create databases
+
+Use a GUI (e.g., MySQL Workbench) or terminal:
+
+```sql
+CREATE DATABASE asset_db;
+CREATE DATABASE insurance_db;
+CREATE DATABASE registry_db;
+```
+
+---
+
+### 3. Run each service
+
+#### API Gateway (port 3000)
+
+```bash
+cd api-gateway
 npm install
-```
-
----
-
-## Running the project
-
-```bash
-# development mode
 npm run start:dev
+```
 
-# production mode
-npm run start:prod
+#### Asset Management Service (port 3001)
+
+```bash
+cd asset-management-service
+npm install
+npm run start:dev
+```
+
+#### General Insurance Service (port 3002)
+
+```bash
+cd general-insurance-service
+npm install
+npm run start:dev
+```
+
+#### Service Registry (port 3003)
+
+```bash
+cd service-registry
+npm install
+npm run start:dev
 ```
 
 ---
 
-## Available endpoints
+## 📊 Monitoring (Optional)
 
-| Endpoint   | Description                            |
-| ---------- | -------------------------------------- |
-| `/health`  | Health check endpoint (database, etc.) |
-| `/metrics` | Prometheus-compatible metrics endpoint |
-| `/api/...` | Your microservice API endpoints        |
+Each service exposes metrics at `http://localhost:<port>/metrics` using `prom-client`.
+
+To enable:
+
+* Install Prometheus on your system
+* Add each service `/metrics` endpoint to the `prometheus.yml` config
+
+Basic config snippet:
+
+```yaml
+scrape_configs:
+  - job_name: 'asset-service'
+    static_configs:
+      - targets: ['localhost:3001']
+
+  - job_name: 'insurance-service'
+    static_configs:
+      - targets: ['localhost:3002']
+```
+
+Start Prometheus and view metrics on [http://localhost:9090](http://localhost:9090).
 
 ---
 
-## Prometheus metrics setup
+## 🧪 Testing
 
-* Metrics are exposed at `/metrics` endpoint using [prom-client](https://github.com/siimon/prom-client).
-* Integrate with Prometheus by scraping this endpoint for observability.
-* Default metrics include memory usage, event loop lag, HTTP request metrics, and custom app metrics.
-
----
-
-## Health Checks
-
-* The `/health` endpoint is implemented using [@nestjs/terminus](https://docs.nestjs.com/recipes/terminus).
-* Performs readiness and liveness probes, including database connectivity checks.
-* Useful for Kubernetes or container orchestrators for health monitoring.
-
----
-
-## Running tests
+Each service supports testing:
 
 ```bash
-# unit tests
+# Run unit tests
 npm run test
 
-# e2e tests
+# Run e2e tests
 npm run test:e2e
 
-# test coverage
+# Coverage report
 npm run test:cov
 ```
 
 ---
 
-## Resources
+## 📁 Shared Library
 
-* [NestJS Documentation](https://docs.nestjs.com)
-* [NestJS Terminus (Health Checks)](https://docs.nestjs.com/recipes/terminus)
-* [prom-client GitHub](https://github.com/siimon/prom-client) for metrics
-* [Discord Community](https://discord.gg/G7Qnnhy) for support
-* [NestJS Official Courses](https://courses.nestjs.com/)
+To avoid duplicating DTOs or constants, use the `shared/` directory for:
 
----
+* DTOs
+* Interfaces
+* Constants
+* Enums
 
-## Support
-
-This project is open source under the MIT license. Contributions and sponsorships are welcome to support ongoing development.
+Then import via relative paths or a shared package (optional: use `npm link` or monorepo setup with `pnpm` or `nx`).
 
 ---
 
-## Stay in touch
+## 🧩 Future Enhancements
 
-* Author - \[CIC]
-* Website - [https://nestjs.com](https://nestjs.com/)
-* Twitter - [@nestframework](https://twitter.com/nestframework)
+* ✅ Authentication microservice
+* ✅ Email/SMS Notification microservice
+* ✅ Caching via Redis
+* ✅ Service mesh (e.g., with NATS or gRPC)
+* ✅ Dockerized deployment
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ---
 
-## License
+## 📄 License
 
-MIT License
+NestJS and this template are [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 
 ---
+
+## 👨‍💻 Author
+
+* Main Framework: [NestJS](https://nestjs.com/)
+* Author: You!
+* Follow us on [LinkedIn](https://linkedin.com/company/nestjs) and [X/Twitter](https://twitter.com/nestframework)
+
+---
+
+ 
