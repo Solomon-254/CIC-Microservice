@@ -84,8 +84,8 @@ DB_DATABASE=asset_db
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/your-org/your-repo.git
-cd your-repo
+git clone https://github.com/Solomon-254/CIC-Microservice
+cd CIC-Microservice
 ```
 
 ---
@@ -95,16 +95,14 @@ cd your-repo
 Use a GUI (e.g., MySQL Workbench) or terminal:
 
 ```sql
-CREATE DATABASE asset_db;
-CREATE DATABASE insurance_db;
-CREATE DATABASE registry_db;
+CREATE DATABASE cic;
 ```
 
 ---
 
-### 3. Run each service
+### 3. Run each service - start with registry first
 
-#### API Gateway (port 3000)
+#### API Gateway (port 3003)
 
 ```bash
 cd api-gateway
@@ -128,7 +126,7 @@ npm install
 npm run start:dev
 ```
 
-#### Service Registry (port 3003)
+#### Service Registry (port 3000)
 
 ```bash
 cd service-registry
@@ -178,21 +176,6 @@ npm run test:e2e
 # Coverage report
 npm run test:cov
 ```
-
----
-
-## 📁 Shared Library
-
-To avoid duplicating DTOs or constants, use the `shared/` directory for:
-
-* DTOs
-* Interfaces
-* Constants
-* Enums
-
-Then import via relative paths or a shared package (optional: use `npm link` or monorepo setup with `pnpm` or `nx`).
-
----
 
 ## 🧩 Future Enhancements
 
