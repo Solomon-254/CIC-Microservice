@@ -24,8 +24,6 @@ project-root/
 ├── asset-management-service/  # Handles assets (CRUD, assignments, etc.)
 ├── general-insurance-service/ # Manages insurance products and logic
 ├── service-registry/          # Basic service discovery or health registry
-├── shared/                    # Shared modules, DTOs, interfaces
-
 ````
 
 ---
