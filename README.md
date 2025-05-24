@@ -200,8 +200,8 @@ NestJS and this template are [MIT licensed](https://github.com/nestjs/nest/blob/
 ## 👨‍💻 Author
 
 * Main Framework: [NestJS](https://nestjs.com/)
-* Author: You!
-* Follow us on [LinkedIn](https://linkedin.com/company/nestjs) and [X/Twitter](https://twitter.com/nestframework)
+* Author: Me!
+
 
 ---
 
